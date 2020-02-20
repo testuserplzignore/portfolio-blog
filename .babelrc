@@ -3,14 +3,28 @@
     "next/babel"
   ],
   "plugins": [
+    "babel-plugin-root-import",
     [
-      "babel-plugin-root-import"
-    ]
+      "styled-components",
+      {
+        "ssr": true,
+        "displayName": true,
+        "preprocess": false
+      }
+    ] 
   ],
   "env": { // For React Native
     "production": {
       "plugins": [
-        "babel-plugin-root-import"
+        "babel-plugin-root-import",
+        [
+          "styled-components",
+          {
+            "ssr": true,
+            "displayName": true,
+            "preprocess": false
+          }
+        ]
       ]
     }
   }

@@ -1,12 +1,12 @@
+import Layout from "~/components/Layout"
 import Hero from "~/components/hero"
 import { getHero } from "~/services"
 
 export default function Index({hero}) {
   return (
-    <div>
+    <Layout>
       <Hero resp={hero} />
-      <p>Hello Next.js</p>
-    </div>
+    </Layout>
   );
 }
 

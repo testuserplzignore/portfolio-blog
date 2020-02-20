@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { breakpoint } from '../style'
 import posed from 'react-pose';
 
 
@@ -13,12 +14,19 @@ export const HeroContainer = styled.div`
 export const AnimationContainer = styled.div`
   padding: ${leftMarginMobile};
   font-size: 2em;
+  ${breakpoint.laptop} {
+    padding: ${LeftMarginLaptop};
+    font-size: 4em;
+  }
 `;
 
 export const AnimatedTextContainer = styled.div`
   display: inline-block;
   user-select: none;
   margin-bottom: 2%;
+  ${breakpoint.laptop} {
+    margin-bottom: .5%;
+  }
 `;
 
 export const BoldAnimatedTextContainer = styled(AnimatedTextContainer)`
@@ -29,6 +37,9 @@ export const LinkContainer = styled.div`
   position: absolute;
   bottom: 3%;
   left: ${leftMarginMobile};
+  ${breakpoint.laptop} {
+    left: ${LeftMarginLaptop};
+  }
 `;
 
 export const AnimatedLinkContainer = posed(LinkContainer)({
@@ -40,6 +51,10 @@ export const AnimatedLinkContainer = posed(LinkContainer)({
 export const Icon = styled.img`
   width: 50px;
   margin-right: 10px;
+  ${breakpoint.laptop} {
+    width: 75px;
+    margin-right: 15px;
+  }
 `;
 
 export const AnimatedIcon = posed(Icon)({
