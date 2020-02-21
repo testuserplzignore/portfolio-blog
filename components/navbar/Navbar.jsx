@@ -1,23 +1,25 @@
 import Link from "next/link"
 import { PoseGroup } from "react-pose"
-import { AnimatedNavContainer, AnimatedNavItem } from './NavbarStyles'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome, faBars } from "@fortawesome/free-solid-svg-icons";
+import { AnimatedNavContainer, AnimatedNavItem, AnimatedNavLink } from './NavbarStyles'
 import useAtTopOfPage from '~/hooks/useAtTopOfPage'
 
 export default function Navbar() {
-  const visible = useAtTopOfPage() ? false : true
+  const offTop = useAtTopOfPage() ? "init" : "offTop"
   
   return (
     <PoseGroup>
-      {visible &&
-        <AnimatedNavContainer key="unique">
-          <Link href="/">
-            <AnimatedNavItem>Home</AnimatedNavItem>
-          </Link>
-        <Link href="/projects">
-          <AnimatedNavItem>Projects</AnimatedNavItem>
+      <AnimatedNavContainer key="unique" pose={offTop}>
+        <Link href="/">
+          <AnimatedNavLink pose={offTop}>
+            <FontAwesomeIcon icon={faHome} />
+          </AnimatedNavLink>
         </Link>
-        </AnimatedNavContainer>
-      }
+          <AnimatedNavItem pose={offTop}>
+            <FontAwesomeIcon icon={faBars} />
+          </AnimatedNavItem>
+      </AnimatedNavContainer>
     </PoseGroup>
-  )
+  );
 }

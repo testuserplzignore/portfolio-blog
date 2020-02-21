@@ -7,6 +7,7 @@ const leftMarginMobile = "10%"
 const LeftMarginLaptop = "2%"
 
 export const HeroContainer = styled.div`
+  padding-top: 2em;
   height: 100vh;
   width: 100%;
 `
