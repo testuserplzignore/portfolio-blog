@@ -54,8 +54,6 @@ const MyForm = () => {
       handleResponse(false, error.response.data.error);
     }
   }
-
-  console.log(serverState);
   
   return (
     <Formik

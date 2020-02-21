@@ -12,6 +12,7 @@ export const HireMeButton = styled.button`
 	border-radius: 5px;
 	text-align: center;
 	box-shadow: 2px 2px 3px #999;
+  z-index: 1;
   
   :focus, :active {
     border-style: solid;

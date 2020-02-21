@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import { getAbout } from "services";
-import {common} from "style";
+import {common} from "../style";
 
 const AboutMeContainer = styled.div`
   ${common.maxWidth}
@@ -40,13 +39,11 @@ const AboutMeContent = ({items}) => (
   </>
 )
 
-export default function AboutMe() {
-  const [aboutMe, loading] = getAbout();
-  
+export default function AboutMe({resp}) {
   return (
     <AboutMeContainer>
       <AboutMeTitle>About Me</AboutMeTitle>
-      { !loading && <AboutMeContent items={aboutMe.items} /> }
+      <AboutMeContent items={resp.items} />
     </AboutMeContainer>
   );
 }
