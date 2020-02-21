@@ -7,6 +7,8 @@ export const NavContainer = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
+  display: flex;
+  flex-direction: row;
 `
 
 export const AnimatedNavContainer = posed(NavContainer)({
@@ -21,9 +23,10 @@ export const AnimatedNavContainer = posed(NavContainer)({
        });
 
 const navItemStyle = `
+  position: relative
   float: left;
   font-size: 2em;
-  display: block;
+  display: inline-block;
   color: white;
   text-align: center;
   padding: .5em;
@@ -43,6 +46,10 @@ const animatedNavItemConfig = {
   hover: {
     backgroundColor: "#ddd",
     color: "rgb(0, 0, 0)"
+  },
+  dropdownVisible: {
+    backgroundColor: "#ddd",
+    color: "rgb(0, 0, 0)"
   }
 };
 
@@ -57,6 +64,27 @@ export const AnimatedNavLink = posed(
     ${navItemStyle}
     cursor: pointer;
   `
-)(
-  animatedNavItemConfig
-);
+)(animatedNavItemConfig);
+
+export const AnimatedDropdownContent = posed(
+  styled.div`
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  `
+)({
+  init: {
+    opacity: 0,
+    applyAtEnd: {
+      display: "none"
+    }
+  },
+  dropdownVisible: {
+    opacity: 1,
+    applyAtStart: {
+      display: "block"
+    }
+  }
+})

@@ -7,7 +7,6 @@ const leftMarginMobile = "10%"
 const LeftMarginLaptop = "2%"
 
 export const HeroContainer = styled.div`
-  padding-top: 2em;
   height: 100vh;
   width: 100%;
 `
@@ -16,7 +15,8 @@ export const AnimationContainer = styled.div`
   padding: ${leftMarginMobile};
   font-size: 2em;
   ${breakpoint.laptop} {
-    padding: ${LeftMarginLaptop};
+    padding: 0;
+    padding-left: ${LeftMarginLaptop};
     font-size: 4em;
   }
 `;
