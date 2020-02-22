@@ -18,12 +18,14 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default props => (
-  <>
-    <GlobalStyle />
-    <Navbar />
-    {props.children}
-    <HireMe />
-    <Footer />
-  </>
-)
+export default function Layout (props) {
+  return (
+    <>
+      <GlobalStyle />
+      <Navbar />
+      {props.children}
+      <HireMe />
+      <Footer />
+    </>
+  )
+}
