@@ -1,6 +1,6 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
-import Layout from "~/components/Layout"
+import Layout from "../../components/Layout"
 import {contentful} from "../../services";
 
 export default function BlogPost({post}) { 

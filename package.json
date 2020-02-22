@@ -21,10 +21,13 @@
   },
   "homepage": "https://github.com/ElllGeeEmm/portfolio-blog#readme",
   "dependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.8.3",
     "@contentful/rich-text-react-renderer": "^13.4.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.8",
+    "babel-plugin-root-import": "^6.4.1",
+    "babel-plugin-styled-components": "^1.10.7",
     "contentful": "^7.13.1",
     "dotenv-webpack": "^1.7.0",
     "formik": "^2.1.4",
@@ -38,10 +41,5 @@
     "react-typist": "^2.0.5",
     "styled-components": "^5.0.1",
     "yup": "^0.28.1"
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-export-default-from": "^7.8.3",
-    "babel-plugin-root-import": "^6.4.1",
-    "babel-plugin-styled-components": "^1.10.7"
   }
 }
