@@ -1,5 +1,4 @@
 const contentful = require("contentful");
-// require("dotenv").config();
 const Dotenv = require("dotenv-webpack");
 const path = require("path");
 
@@ -8,8 +7,10 @@ const { generateSitemap } = require("./next.sitemap")
 console.log("NODE_ENV", process.env);
 
 module.exports = {
-  webpack: (config, {dev}) => 
-  ({
+  webpack: (config, {dev}) =>{ 
+    console.log(process.env);
+    
+  return ({
     ...config,
     plugins: [
       ...config.plugins,
@@ -18,9 +19,10 @@ module.exports = {
         systemvars: true
       })
     ]
-  }),
+  })},
 
   exportPathMap: async (defaultPathMap, {dev}) => {
+    console.log("HELLO");
     
 
     if (dev) return {};
