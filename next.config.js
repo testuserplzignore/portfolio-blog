@@ -10,6 +10,7 @@ module.exports = {
   webpack: (config, {dev}) =>{ 
   return ({
     ...config,
+    target: "node",
     plugins: [
       ...config.plugins,
       new Dotenv({
