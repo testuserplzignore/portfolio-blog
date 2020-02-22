@@ -1,30 +1,35 @@
 const contentful = require("contentful");
 const Dotenv = require("dotenv-webpack");
 const path = require("path");
+require("dotenv").config();
 
 const { generateSitemap } = require("./next.sitemap")
 
 
 
 module.exports = {
-  webpack: (config, {dev}) =>{ 
-  return ({
-    ...config,
-    target: "node",
-    plugins: [
+  webpack: (config, {dev}) => { 
+
+    const plugins = [
       ...config.plugins,
-      new Dotenv({
+    ];
+
+    if (dev) {
+      plugins.push(new Dotenv({
         path: path.join(__dirname, ".env"),
         systemvars: true
-      })
-    ]
-  })},
+      }))
+    };
+
+    return ({
+      ...config,
+      plugins
+    });
+  },
 
   exportPathMap: async (defaultPathMap, {dev}) => {
-    console.log("HELLO");
     if (dev) return {};
-    require("dotenv").config()
-    console.log("NODE_ENV", process.env);
+
     const client = contentful.createClient({
       space: process.env.CONTENTFUL_SPACE,
       accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
@@ -51,6 +56,7 @@ module.exports = {
     await generateSitemap(map, process.env.PUBLIC_DOMAIN, "./out/");
     
     return map
+    return defaultPathMap;
   }
 
 };
