@@ -5,8 +5,7 @@ const path = require("path");
 
 const { generateSitemap } = require("./next.sitemap")
 
-
-
+console.log("NODE_ENV", process.env);
 
 module.exports = {
   webpack: (config, {dev}) => 
@@ -14,7 +13,7 @@ module.exports = {
     ...config,
     plugins: [
       ...config.plugins,
-      dev && new Dotenv({
+      new Dotenv({
         path: path.join(__dirname, ".env"),
         systemvars: true
       })
@@ -22,8 +21,6 @@ module.exports = {
   }),
 
   exportPathMap: async (defaultPathMap, {dev}) => {
-
-    console.log("NODE_ENV", process.env);
     
 
     if (dev) return {};
