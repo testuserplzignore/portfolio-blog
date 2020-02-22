@@ -1,6 +1,38 @@
+const contentful = require("./services/contentful")
+const Dotenv = require("dotenv-webpack");
+const path = require("path");
+
 module.exports = {
-  env: {
-    CONTENTFUL_SPACE: "uxlt8cf8h0um",
-    CONTENTFUL_ACCESS_TOKEN: "3AM4XMBKixPvbmZ18734WprqzSdu7Wj9B_tAVCleXAs",
+  webpack: config => {
+    config.target = "node";
+    config.plugins = config.plugins || [];
+    config.plugins = [
+      ...config.plugins,
+      // Read the .env file
+      new Dotenv({
+        path: path.join(__dirname, ".env"),
+        systemvars: true
+      })
+    ];
+
+    return config;
   },
+
+  exportPathMap: async (defaultPathMap) => {
+    const blogPosts = (await contentful.getBlog()).items.map(({sys}) => sys.id);
+
+    const blogPostPathMap = blogPosts.reduce((acc, slug) => {
+      acc[`/blog/${slug}`] = {
+        page: "/blog/[slug]",
+      };    
+      return acc;
+    }, {});
+    
+    delete defaultPathMap["/blog/[slug]"];
+    
+    return {
+      ...defaultPathMap,
+      ...blogPostPathMap
+    };
+  }
 };

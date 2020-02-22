@@ -1,4 +1,4 @@
-import api from "./api"
+const api = require("./api")
 
 
 const getHero = () => 
@@ -16,10 +16,10 @@ const getBlog = () =>
 const getBlogPost = (id) =>
   api.getEntry(id)
 
-export default {
+module.exports = {
   getProjects,
   getHero,
   getBlog,
   getBlogPost,
-  getAboutMe,
+  getAboutMe
 };

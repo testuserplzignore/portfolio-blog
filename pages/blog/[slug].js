@@ -4,7 +4,6 @@ import Layout from "~/components/Layout"
 import {contentful} from "../../services";
 
 export default function BlogPost({post}) { 
-  console.log(post);
   
   return (
     <Layout>

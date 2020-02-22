@@ -3,7 +3,6 @@ import Layout from "~/components/Layout";
 import { contentful } from "~/services";
 
 export default function Blog (props) { 
-  console.log(props);
   
   return (
     <Layout>
