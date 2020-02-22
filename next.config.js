@@ -14,7 +14,7 @@ module.exports = {
     ...config,
     plugins: [
       ...config.plugins,
-      new Dotenv({
+      dev && new Dotenv({
         path: path.join(__dirname, ".env"),
         systemvars: true
       })
@@ -22,6 +22,9 @@ module.exports = {
   }),
 
   exportPathMap: async (defaultPathMap, {dev}) => {
+
+    console.log("NODE_ENV", process.env);
+    
 
     if (dev) return {};
 
