@@ -52,7 +52,6 @@ module.exports = {
     await generateSitemap(map, process.env.PUBLIC_DOMAIN, "./out/");
     
     return map
-    return defaultPathMap;
   }
 
 };

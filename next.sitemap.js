@@ -56,8 +56,7 @@ exports.generateSitemap = async (entries, domain, targetFolder) => {
   const pages = Object.entries({ ...entries }).map(item => item[0]);
 
   const sitemap = `${xmlUrlWrapper(
-    pages.map(page => xmlUrlNode(domain, page, lastModified)).join(`
-`)
+    pages.map(page => xmlUrlNode(domain, page, lastModified)).join("\n")
   )}`;
 
   fs.writeFile(`${writeLocation}`, sitemap, err => {
