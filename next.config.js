@@ -1,39 +1,48 @@
-const contentful = require("./services/contentful")
+const contentful = require("contentful");
+require("dotenv").config();
 const Dotenv = require("dotenv-webpack");
 const path = require("path");
 
-const {generateSitemap} = require("./services/deploy/sitemap")
+const { generateSitemap } = require("./next.sitemap")
 
 
-const deleteKey = (obj, key) => {
-  if (!!obj && !!obj[key]) {
-    delete obj[key];
-  }
-  console.log(obj);
-  
-  return obj
-}
+const client = contentful.createClient({
+  space: process.env.CONTENTFUL_SPACE,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+});
 
 module.exports = {
-  webpack: config => {
-    config.target = "node";
-    config.plugins = config.plugins || [];
-    config.plugins = [
+  webpack: (config, {dev}) => 
+  ({
+    ...config,
+    plugins: [
       ...config.plugins,
-      // Read the .env file
       new Dotenv({
         path: path.join(__dirname, ".env"),
         systemvars: true
       })
-    ];
+    ]
+  }),
+  // {
+  //   config.plugins = config.plugins || [];
+  //   config.plugins = [
+  //     ...config.plugins,
+  //     new Dotenv({
+  //       path: path.join(__dirname, ".env"),
+  //       systemvars: true
+  //     })
+  //   ];
 
-    return config;
-  },
+  //   return config;
+  // },
 
   exportPathMap: async (defaultPathMap, {dev}) => {
-    console.log(defaultPathMap);
+
+    if (dev) return {};
     
-    const blogPosts = (await contentful.getBlog()).items.map(({sys}) => sys.id);
+    const blogPosts = (
+      await client.getEntries({content_type: "blogPost"})
+    ).items.map(({sys}) => sys.id);
 
     const blogPostPathMap = blogPosts.reduce((acc, slug) => {
       acc[`/blog/${slug}`] = {
@@ -47,12 +56,9 @@ module.exports = {
       ...blogPostPathMap
     };
 
-    if (!dev){
-      delete map["/blog/[slug]"];
-      generateSitemap(map, process.env.PUBLIC_DOMAIN, "./out/");
-    }
 
-
+    delete map["/blog/[slug]"];
+    await generateSitemap(map, process.env.PUBLIC_DOMAIN, "./out/");
     
     return map
   }

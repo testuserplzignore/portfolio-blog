@@ -1,4 +1,4 @@
-const api = require("./api")
+import api from "./api"
 
 
 const getHero = () => 
@@ -16,7 +16,7 @@ const getBlog = () =>
 const getBlogPost = (id) =>
   api.getEntry(id)
 
-module.exports = {
+export const contentful = {
   getProjects,
   getHero,
   getBlog,

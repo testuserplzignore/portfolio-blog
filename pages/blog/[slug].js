@@ -13,6 +13,6 @@ export default function BlogPost({post}) {
   )
 }
 
-BlogPost.getInitialProps = async ctx => { 
-  return { post: await contentful.getBlogPost(ctx.query.slug) };
-}
+BlogPost.getInitialProps = async ctx => ({ 
+  post: await contentful.getBlogPost(ctx.query.slug) 
+})
