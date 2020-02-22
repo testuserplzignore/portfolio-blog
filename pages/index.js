@@ -1,7 +1,7 @@
 import Layout from "~/components/Layout"
 import Hero from "~/components/hero"
 import AboutMe from "~/components/aboutMe"
-import {getHero, getAboutMe} from "~/services";
+import {contentful} from "~/services";
 
 export default function Index({hero, aboutMe}) {
   return (
@@ -13,7 +13,10 @@ export default function Index({hero, aboutMe}) {
 }
 
 Index.getInitialProps = async ctx => {
-  const [hero, aboutMe] = await Promise.all([getHero(), getAboutMe()])
+  const [hero, aboutMe] = await Promise.all([
+    contentful.getHero(),
+    contentful.getAboutMe()
+  ]);
   return {
     hero,
     aboutMe

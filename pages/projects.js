@@ -1,6 +1,6 @@
 import Layout from "~/components/Layout";
 import Projects from "~/components/projects";
-import { getProjects } from "~/services";
+import { contentful } from "~/services";
 
 export default function Pages ({projects}) {
   return(
@@ -10,4 +10,4 @@ export default function Pages ({projects}) {
   )
 }
 
-Pages.getInitialProps = async ctx => ({projects: await getProjects()});
+Pages.getInitialProps = async ctx => ({projects: await contentful.getProjects()});
