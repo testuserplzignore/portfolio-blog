@@ -19,6 +19,7 @@
     "production": {
       "plugins": [
         "babel-plugin-root-import",
+        "@babel/plugin-proposal-export-default-from",
         [
           "styled-components",
           {
