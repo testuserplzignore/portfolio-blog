@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { contentful } from "~/services";
-import Layout from "~/components/Layout";
+import Layout from "../components/Layout";
 
 export default function Blog (props) { 
   
