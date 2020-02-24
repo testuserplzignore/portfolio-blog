@@ -9,11 +9,11 @@ export default function Blog (props) {
       <div style={{ marginTop: "2em" }}>
         <ul>
           {props.blogPosts.items.map(post => (
-            <Link href={`/blog/${post.sys.id}`} key={post.sys.id}>
-              <li>
+            <li key={post.sys.id}>
+              <Link href={`/blog/[slug]`} as={`/blog/${post.sys.id}`}>
                 <a>{post.fields.title}</a>
-              </li>
-            </Link>
+              </Link>
+            </li>
           ))}
         </ul>
       </div>

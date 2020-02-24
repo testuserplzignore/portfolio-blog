@@ -1,6 +1,5 @@
 import api from "./api"
 
-
 const getHero = () => 
   api.getEntries({ content_type: "hero" });
 

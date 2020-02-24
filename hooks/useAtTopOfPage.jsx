@@ -13,6 +13,9 @@ const useAtTopOfPage = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", listenToScroll);
+    return () => {
+      window.removeEventListener("scroll", listenToScroll);
+    }
   })
 
   return visible
