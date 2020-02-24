@@ -44,7 +44,6 @@ export const atEndOfPage = () => {
 };
 
 export const atTopOfScrollablePage = () => {
-
   if (typeof window !== "undefined"){
     const stateLogic = () => {
       const scrollable = !(window.innerHeight >= document.body.offsetHeight);
@@ -59,6 +58,7 @@ export const atTopOfScrollablePage = () => {
         return (false);
       }
     };
+
     const [state, setState] = useState(stateLogic());
   
     const stateHandler = () => {setState(stateLogic())};

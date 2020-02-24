@@ -1,11 +1,10 @@
 import Link from "next/link"
 import { contentful } from "~/services";
-import Layout from "~/components/layout";
 
 export default function Blog (props) { 
   
   return (
-    <Layout>
+    <>
       <div style={{ marginTop: "2em" }}>
         <ul>
           {props.blogPosts.items.map(post => (
@@ -17,7 +16,7 @@ export default function Blog (props) {
           ))}
         </ul>
       </div>
-    </Layout>
+    </>
   );
 }
 
