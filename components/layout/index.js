@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default function Layout (props) {
+export default function Layout(props) {
   return (
     <>
       <GlobalStyle />
@@ -27,5 +27,5 @@ export default function Layout (props) {
       <HireMe />
       <Footer />
     </>
-  )
+  );
 }
