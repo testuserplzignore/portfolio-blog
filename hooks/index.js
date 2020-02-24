@@ -1,7 +1,7 @@
 import {
-  useAtTopOfPage,
-  endOfPage,
+  atTopOfPage,
+  atEndOfPage,
   atTopOfScrollablePage
 } from "./scrollHandlers";
 
-export { useAtTopOfPage, endOfPage, atTopOfScrollablePage };
+export { atTopOfPage, atEndOfPage, atTopOfScrollablePage };

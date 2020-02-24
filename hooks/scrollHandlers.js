@@ -21,7 +21,7 @@ export const atTopOfPage = () => {
   return state;
 };
 
-export const endOfPage = () => {
+export const atEndOfPage = () => {
   const [endOfPage, setEndOfPage] = useState(false);
 
   const endOfPageStateHandler = () => {
@@ -44,32 +44,36 @@ export const endOfPage = () => {
 };
 
 export const atTopOfScrollablePage = () => {
-  const [state, setState] = useState(true);
 
-  const stateHandler = () => {
-    const scrollable = !(window.innerHeight >= document.body.offsetHeight);
-    const scrolled = window.pageYOffset !== 0;
-    if (scrollable) {
-      if (scrolled) {
-        setState(false);
+  if (typeof window !== "undefined"){
+    const stateLogic = () => {
+      const scrollable = !(window.innerHeight >= document.body.offsetHeight);
+      const scrolled = window.pageYOffset !== 0;
+      if (scrollable) {
+        if (scrolled) {
+          return (false);
+        } else {
+          return (true);
+        }
       } else {
-        setState(true);
+        return (false);
       }
-    } else {
-      setState(false);
-    }
-  };
-
-  useEffect(() => {
-    stateHandler();
-    window.addEventListener("scroll", stateHandler);
-    window.addEventListener("resize", stateHandler);
-    return () => {
-      window.removeEventListener("scroll", stateHandler);
-      window.removeEventListener("resize", stateHandler);
     };
-  });
+    const [state, setState] = useState(stateLogic());
   
-  return state;
+    const stateHandler = () => {setState(stateLogic())};
+  
+    useEffect(() => {
+      stateHandler();
+      window.addEventListener("scroll", stateHandler);
+      window.addEventListener("resize", stateHandler);
+      return () => {
+        window.removeEventListener("scroll", stateHandler);
+        window.removeEventListener("resize", stateHandler);
+      };
+    });
+    
+    return state;
+  };
 };
 

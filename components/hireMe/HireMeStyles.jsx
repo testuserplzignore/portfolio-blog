@@ -23,11 +23,11 @@ export const HireMeButton = styled.button`
 export const AnimatedHireMeButton = posed(HireMeButton)({
   hoverable: true,
   pressable: true,
-  enter: {
+  in: {
     y: 0,
     opacity: 1,
   },
-  exit: {
+  out: {
     y: 100,
     opacity: 0
   },

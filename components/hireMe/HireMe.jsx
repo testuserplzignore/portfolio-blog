@@ -20,14 +20,13 @@ export default function HireMe() {
   return (
     <>
       <PoseGroup>
-        {visible && (
           <AnimatedHireMeButton
+            pose={visible ? "in" : "out"}
             key={keys.button}
             onClick={() => setModalActive(true)}
           >
             HIRE ME
           </AnimatedHireMeButton>
-        )}
       </PoseGroup>
       <HireMeModal
         key={keys.modal}
